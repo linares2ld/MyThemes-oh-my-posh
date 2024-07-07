@@ -1,0 +1,196 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "background": "#ffcc88",
+          "foreground": "#222222",
+          "powerline_symbol": "\ue0bc",
+          "style": "powerline",
+          "template": "\uf0e7",
+          "type": "root"
+        },
+        {
+          "background": "#222222",
+          "foreground": "#666666",
+          "leading_diamond": "\ue0ba",
+          "style": "diamond",
+          "template": " {{ if .WSL }}{{ end }}{{.Icon}}",
+          "type": "os"
+        },
+        {
+          "background": "#222222",
+          "foreground": "#666666",
+          "powerline_symbol": "\ue0bc",
+          "style": "powerline",
+          "template": "{{ if .SSHSession }}\ueba9 {{ end }}{{ .UserName }} ",
+          "type": "session"
+        },
+        {
+          "background": "#880000",
+          "foreground": "#ff8888",
+          "powerline_symbol": "\ue0bc",
+          "style": "powerline",
+          "template": "{{ if gt .Code 0 }} {{ .Code }} {{ end }}",
+          "type": "status"
+        },
+        {
+          "foreground": "#666666",
+          "properties": {
+            "folder_icon": "<#f14e32>\u2026</>",
+            "style": "mixed",
+            "gitdir_format": "#fffff"
+          },
+          "style": "plain",
+          "template": "<#f14e32> // </>{{ .Path }} ",
+          "type": "path"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "segments": [
+        {
+          "properties": {
+            "command": "git log --pretty=format:%cr -1 || ",
+            "shell": "bash"
+          },
+          "style": "plain",
+          "template": "<#666666> Activity: {{ .Output }} </>",
+          "type": "command"
+        },
+        {
+          "background": "#ffeb3b",
+          "foreground": "#193549",
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#FFEB3B{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FFCC80{{ end }}",
+            "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
+            "{{ if gt .Behind 0 }}#B388FB{{ end }}"
+          ],
+          "properties": {
+            "branch_icon": "\ue725 ",
+            "cherry_pick_icon": "\ue29b ",
+            "commit_icon": "\uf417 ",
+            "merge_icon": "\ue727 ",
+            "no_commits_icon": "\uf0c3 ",
+            "rebase_icon": "\ue728 ",
+            "revert_icon": "\uf0e2 ",
+            "tag_icon": "\uf412 ",
+
+              
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "fetch_worktree_count": true
+          },
+          "leading_diamond": "\ue0ba",
+          "style": "diamond",
+          "template": "{{ .UpstreamIcon }} {{ .HEAD }} {{.Upstream}}",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "style": "diamond",
+          "template": "\ue266 {{ (div ((sub .PhysicalTotalMemory .PhysicalFreeMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB",
+          "type": "sysinfo"
+        },
+        {
+          "properties": {
+            "time_format": "Monday 3:04 pm"
+          },
+          "style": "diamond",
+          "template": "<#f14e32> / </>{{ .CurrentDate | date .Format }}<#cccccc> \uf073",
+          "type": "time"
+        },
+        {
+          
+          "foreground": "#8cff6c",
+          "properties": {
+            "fetch_version": true
+          },
+          "style": "plain",
+          "template": " / \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} /",
+          "type": "python"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "segments": [
+        {
+          "background": "#cfcfcf",
+          "foreground": "#292929",
+          "properties": {
+            "branch_icon": "\ue725 ",
+            "cherry_pick_icon": "\ue29b ",
+            "commit_icon": "\uf417 ",
+            "merge_icon": "\ue727 ",
+            "no_commits_icon": "\uf0c3 ",
+            "rebase_icon": "\ue728 ",
+            "revert_icon": "\uf0e2 ",
+            "tag_icon": "\uf412 ",
+
+              
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "fetch_worktree_count": true
+          },
+          "leading_diamond": "\ue0be",
+          "style": "diamond",
+          "template": "{{if .BranchStatus }}{{ .BranchStatus }}{{ if gt .Ahead 0 }}{{ end }}{{ if gt .Behind 0 }}{{ end }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#f14e32",
+          "properties": {
+            "style": "galvestonms",
+            "always_enabled": true
+          },
+          "style": "plain",
+          "template": "{{ .FormattedMs }} ",
+          "type": "executiontime"
+        },
+        {
+          "foreground": "#f14e32",
+          "style": "plain",
+          "template": "{{ .Name }} ",
+          "type": "shell",
+          "properties": {
+            "mapped_shell_names": {
+              "pwsh": "\u276f",
+              "shell": "\u276f",
+              "cmd": ">",
+              "lua": ">",
+              "nu": ":)",
+              "fish": "~>",
+              "zsh": "%",
+              "bash": ""
+            }
+          }
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "version": 2
+}
