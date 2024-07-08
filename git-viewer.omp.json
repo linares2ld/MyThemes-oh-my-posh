@@ -134,7 +134,7 @@
             "fetch_worktree_count": true
           },
           "style": "plain",
-          "template":"<#cccccc> {{if .BranchStatus }}{{ .BranchStatus }}{{ end }}</>{{ if .Working.Changed }} <#ff6c6c>\uf040 {{ .Working.String }}{{ end }}</>{{ if and (.Working.Changed) (.Staging.Changed) }}<#cccccc> |</>{{ end }}<#8cff6c>{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}</>{{ if gt .StashCount 0 }} \udb80\udd93 {{ .StashCount }}{{ end }} ",
+          "template":"<#cccccc> {{if .BranchStatus }}{{ .BranchStatus }}{{ end }}</>{{ if .Working.Changed }} <#ff6c6c>\uf040 {{ .Working.String }}{{ end }}</>{{ if and (.Working.Changed) (.Staging.Changed) }}<#cccccc> |</>{{ end }}<#8cff6c>{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}</>{{ if or (.Working.Changed) (.Staging.Changed) }}<#cccccc> |</>{{ end }}{{ if gt .StashCount 0 }} <#007ACC>\udb80\udd93 {{ .StashCount }}</>{{ end }} ",
           "type": "git"
         }
       ],
