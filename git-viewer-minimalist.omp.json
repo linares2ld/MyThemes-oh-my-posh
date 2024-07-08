@@ -1,0 +1,164 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#666666",
+          "style": "plain",
+          "template": "{{ if .WSL }}{{ end }}{{.Icon}} ",
+          "type": "os"
+        },
+        {
+          "foreground": "#666666",
+          "style": "plain",
+          "template": "{{ if .SSHSession }}\ueba9 {{ end }}{{ .UserName }}",
+          "type": "session"
+        },
+        {
+          "foreground": "#666666",
+          "properties": {
+            "folder_separator_icon": "/",
+            "folder_icon": "<#f14e32>\u2026</>",
+            "style": "mixed"
+          },
+          "style": "plain",
+          "template": "<#f14e32> // </>{{ .Path }} ",
+          "type": "path"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "segments": [
+        {
+          "foreground": "#cccccc",
+          "style": "plain",
+          "template": "\ue266 {{ (div ((sub .PhysicalTotalMemory .PhysicalFreeMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB",
+          "type": "sysinfo"
+        },
+        {
+          "foreground": "#cccccc",
+          "foreground_templates": [
+            "{{if eq \"Charging\" .State.String}}#40c4ff{{end}}",
+            "{{if eq \"Discharging\" .State.String}}#ff5722{{end}}",
+            "{{if eq \"Full\" .State.String}}#4caf50{{end}}"
+          ],
+          "properties": {
+            "discharging_icon": " ",
+            "charging_icon": " ",
+            "charged_icon": " "
+          },
+          "style": "plain",
+          "templates": [
+            "<#666666> / </>{{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }}"
+          ],
+          "type": "battery"
+        },
+        {
+          "properties": {
+            "time_format": "Monday 3:04 pm"
+          },
+          "foreground": "#cccccc",
+          "style": "plain",
+          "template": "<#666666> / </>{{ .CurrentDate | date .Format }} \uf073",
+          "type": "time"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#ffea2f",
+          "foreground_templates": [
+            "{{ if gt .Ahead 0 }}#b388ff{{ end }}",
+            "{{ if gt .Behind 0 }}#88b2ff{{ end }}"
+          ],
+          "properties": {
+            "branch_icon": "\ue725 ",
+            "cherry_pick_icon": "\ue29b ",
+            "commit_icon": "\uf417 ",
+            "merge_icon": "\ue727 ",
+            "no_commits_icon": "\uf0c3 ",
+            "rebase_icon": "\ue728 ",
+            "revert_icon": "\uf0e2 ",
+            "tag_icon": "\uf412 ",
+
+              
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "fetch_worktree_count": true
+          },
+          "style": "plain",
+          "templates": [
+            "<#ffa928>[\uf007 {{.Commit.Author.Name}}]</> {{ .HEAD }} ",
+            "{{ if .Upstream }}\uebcb {{.Upstream }} {{ end }}{{ .UpstreamIcon }}",
+
+            "<#cccccc>{{if .BranchStatus }}{{ if gt .Ahead 2 }}<f>{{ .BranchStatus }}</f>{{else}}{{ .BranchStatus }}{{ end }}{{ end }}</> ",  
+
+            "{{ if .Working.Changed }} <#ff6c6c>\uf040 {{ .Working.String }}{{ end }}</>",
+            "{{ if and (.Working.Changed) (.Staging.Changed) }}<#cccccc> |</>{{ end }}<#8cff6c>{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}</>",
+            "{{ if gt .StashCount 0 }}{{ if or (.Working.Changed) (.Staging.Changed) }}<#cccccc> \udb80\uddd8</>{{ end }} <#2395e0>\udb80\udd93 {{ .StashCount }}</>{{ end }} "
+          ],
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#cccccc",
+          "properties": {
+            "style": "galvestonms",
+            "always_enabled": true
+          },
+          "style": "plain",
+          "template": "{{ .FormattedMs }} ",
+          "type": "executiontime"
+        },
+        {
+          "foreground": "#ff8888",
+          "style": "plain",
+          "template": "[ <f>\ue23a</f> {{ if gt .Code 0 }}{{ .Code }}{{ end }} ] ",
+          "type": "status"
+        },
+        {
+          "foreground": "#f14e32",
+          "style": "plain",
+          "template": "{{ .Name }} ",
+          "type": "shell",
+          "properties": {
+            "mapped_shell_names": {
+              "pwsh": "\u276f",
+              "shell": "\u276f",
+              "cmd": ">",
+              "lua": ">",
+              "nu": ":)",
+              "fish": "~>",
+              "zsh": "%",
+              "bash": "\uf101"
+            }
+          }
+        },
+        {
+          "foreground": "#f14e32",
+          "style": "plain",
+          "template": "\uf0e7",
+          "type": "root"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "version": 2
+}
