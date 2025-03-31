@@ -1,159 +1,193 @@
 {
-    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
-    "blocks": [
-      {
-        "alignment": "left",
-        "segments": [
-          {
-            "background": "#ffcc88",
-            "foreground": "#222222",
-            "leading_diamond": "\ue0ba",
-            "trailing_diamond": "\ue0bc",
-            "style": "diamond",
-            "template": "\uf0e7",
-            "type": "root"
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "properties": {
+            "cache_duration": "none"
           },
-          {
-            "background": "#222222",
-            "foreground": "#666666",
-            "leading_diamond": "\ue0ba",
-            "style": "diamond",
-            "template": " {{ if .WSL }}{{ end }}{{.Icon}}",
-            "type": "os"
+          "leading_diamond": "\ue0ba",
+          "trailing_diamond": "\ue0bc",
+          "template": "\uf0e7",
+          "foreground": "#222222",
+          "background": "#ffcc88",
+          "type": "root",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
           },
-          {
-            "background": "#222222",
-            "foreground": "#666666",
-            "trailing_diamond": "\ue0bc",
-            "style": "diamond",
-            "template": " {{ if .SSHSession }}\ueba9 {{ end }}{{ .UserName }} ",
-            "type": "session"
+          "leading_diamond": "\ue0ba",
+          "template": " {{ if .WSL }}{{ end }}{{.Icon}}",
+          "foreground": "#666666",
+          "background": "#222222",
+          "type": "os",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
           },
-          {
-            "background": "#880000",
-            "foreground": "#ff8888",
-            "leading_diamond": "\ue0ba",
-            "trailing_diamond": "\ue0bc",
-            "style": "diamond",
-            "template": "{{ if gt .Code 0 }} {{ .Code }} {{ end }}",
-            "type": "status"
+          "trailing_diamond": "\ue0bc",
+          "template": " {{ if .SSHSession }}\ueba9 {{ end }}{{ .UserName }} ",
+          "foreground": "#666666",
+          "background": "#222222",
+          "type": "session",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
           },
-          {
-            "background": "#f14e32",
-            "foreground": "#f0efe7",
-            "properties": {
-              "branch_icon": "\ue725 ",
-              "cherry_pick_icon": "\ue29b ",
-              "commit_icon": "\uf417 ",
-              "fetch_status": false,
-              "fetch_upstream_icon": false,
-              "merge_icon": "\ue727 ",
-              "no_commits_icon": "\uf0c3 ",
-              "rebase_icon": "\ue728 ",
-              "revert_icon": "\uf0e2 ",
-              "tag_icon": "\uf412 "
-            },
-            "leading_diamond": "\ue0ba",
-            "trailing_diamond": "\ue0bc",
-            "style": "diamond",
-            "template": " {{ .HEAD }} ",
-            "type": "git"
+          "leading_diamond": "\ue0ba",
+          "trailing_diamond": "\ue0bc",
+          "template": " <f>\ue23a</f> {{ if gt .Code 0 }}{{ .Code }}{{ end }} ",
+          "foreground": "#ff8888",
+          "background": "#880000",
+          "type": "status",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "branch_icon": "\ue725 ",
+            "cache_duration": "none",
+            "cherry_pick_icon": "\ue29b ",
+            "commit_icon": "\uf417 ",
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "merge_icon": "\ue727 ",
+            "no_commits_icon": "\uf0c3 ",
+            "rebase_icon": "\ue728 ",
+            "revert_icon": "\uf0e2 ",
+            "tag_icon": "\uf412 "
           },
-          {
-            
-            "foreground": "#8cff6c",
-            "properties": {
-              "fetch_version": true
-            },
-            "style": "plain",
-            "template": "/ \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} /",
-            "type": "python"
-          }
-        ],
-        "type": "prompt"
-      },
-      {
-        "alignment": "right",
-        "segments": [
-          {
-            "foreground": "#007ACC",
-            "properties": {
-              "style": "austin",
-              "threshold": 321
-            },
-            "style": "plain",
-            "template": "{{ .FormattedMs }} /",
-            "type": "executiontime"
+          "leading_diamond": "\ue0ba",
+          "trailing_diamond": "\ue0bc",
+          "template": " {{ .HEAD }} {{ if .Upstream }}<#666666>\uebcb</> <#ffffff>{{ .UpstreamIcon }} {{ end }}</>",
+          "foreground": "#ffea2f",
+          "background": "#222222",
+          "type": "git",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "fetch_version": true,
+            "folder_name_fallback": false
           },
-          {
-            "type": "battery",
-            "style": "plain",
-            "template": " {{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }}",
-            "properties": {
-            "discharging_icon": "󱟤 ",
-            "charging_icon": "󱟦 ",
-            "charged_icon": "󱟢 "
-            }  
-          }
-        ],
-        "type": "prompt"
-      },
-      {
-        "alignment": "left",
-        "newline": true,
-        "segments": [
-          {
-            "style": "diamond",
-            "template": "  \ue266 {{ (div ((sub .PhysicalTotalMemory .PhysicalFreeMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB",
-            "type": "sysinfo"
+          "leading_diamond": "\ue0ba",
+          "trailing_diamond": "\ue0bc",
+          "template": " \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }}{{ end }}{{ end }} ",
+          "foreground": "#8cff6c",
+          "background": "#222222",
+          "type": "python",
+          "style": "diamond"
+        }
+      ],
+      "newline": true
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "properties": {
+            "cache_duration": "none",
+            "style": "austin",
+            "threshold": 321
           },
-          {
-            "properties": {
-              "time_format": "Monday 3:04 pm"
-            },
-            "style": "diamond",
-            "template": "<#f14e32> / </>{{ .CurrentDate | date .Format }}<#cccccc> \uf073",
-            "type": "time"
+          "template": "{{ .FormattedMs }} /",
+          "foreground": "#007ACC",
+          "type": "executiontime",
+          "style": "plain"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "charged_icon": "\udb85\udfe2 ",
+            "charging_icon": "\udb85\udfe6 ",
+            "discharging_icon": "\udb85\udfe4 "
           },
-          {
-            "foreground": "#666666",
-            "properties": {
-              "folder_icon": "\u2026",
-              "style": "mixed"
-            },
-            "style": "plain",
-            "template": "<#f14e32> // </>{{ .Path }} ",
-            "type": "path"
-          }
-        ],
-        "type": "prompt"
-      },
-      {
-        "alignment": "left",
-        "newline": true,
-        "segments": [
-          {
-            "foreground": "#f14e32",
-            "style": "plain",
-            "template": "{{ .Name }} ",
-            "type": "shell",
-            "properties": {
-              "mapped_shell_names": {
-                "pwsh": "\u276f",
-                "shell": "\u276f",
-                "cmd": ">",
-                "lua": ">",
-                "nu": ":)",
-                "fish": "~>",
-                "zsh": "%",
-                "bash": ""
-              }
+          "foreground_templates": [
+            "{{if le .Percentage 30}}#ff0000{{end}}",
+            "{{if and (gt .Percentage 30) (le .Percentage 50)}}#ffeb3b{{end}}",
+            "{{if and (gt .Percentage 50) (lt .Percentage 90)}}#cccccc{{end}}",
+            "{{if ge .Percentage 90}}#4caf50{{end}}"
+          ],
+          "template": " {{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }}\uf295",
+          "type": "battery",
+          "style": "plain"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "  \ue266 {{ (div ((sub .PhysicalTotalMemory .PhysicalFreeMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB",
+          "foreground": "#777777",
+          "type": "sysinfo",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "time_format": "03:04:05 pm"
+          },
+          "template": "<#f14e32> / </>{{ .CurrentDate | date .Format }}<#f14e32> // </>",
+          "foreground": "#bbbbbb",
+          "type": "time",
+          "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "folder_icon": "\u2026",
+            "folder_separator_icon": "/",
+            "style": "mixed"
+          },
+          "template": "{{ .Path }} ",
+          "foreground": "#777777",
+          "type": "path",
+          "style": "plain"
+        }
+      ],
+      "newline": true
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "properties": {
+            "cache_duration": "none",
+            "mapped_shell_names": {
+              "bash": "\uf101",
+              "cmd": "\ueab6",
+              "fish": "~>",
+              "lua": "\ueab6",
+              "nu": ":)",
+              "pwsh": "❯",
+              "shell": "❯",
+              "zsh": "%"
             }
-          }
-        ],
-        "type": "prompt"
-      }
-    ],
-    "version": 2
-  }
-  
+          },
+          "template": "{{ .Name }} ",
+          "foreground": "#f14e32",
+          "type": "shell",
+          "style": "plain"
+        }
+      ],
+      "newline": true
+    }
+  ],
+  "version": 3
+}
